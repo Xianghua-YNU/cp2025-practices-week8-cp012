@@ -59,7 +59,7 @@ def stable_formula(a, b, c):
     if a == 0:
         if b == 0:
             return None  # 无解或无限多解
-        return -c / b, None
+        return -c / b, -c/b
 
     discriminant = b ** 2 - 4 * a * c
 
