@@ -38,12 +38,9 @@ def alternative_formula(a, b, c):
         return None
     sqrt_discriminant = np.sqrt(discriminant)
     # 避免分母为零的情况
-    if b > 0:
-        x1 = (2 * c) / (-b - sqrt_discriminant)
-        x2 = (-b - sqrt_discriminant) / (2 * a)
-    else:
-        x1 = (-b + sqrt_discriminant) / (2 * a)
-        x2 = (2 * c) / (-b + sqrt_discriminant)
+
+    x1 = (2 * c) / (-b - sqrt_discriminant)
+    x2 = (2 * c) / (-b + sqrt_discriminant)
     return x1, x2
 
 
