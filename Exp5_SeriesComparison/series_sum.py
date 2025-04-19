@@ -106,7 +106,7 @@ def print_results():
     # 提示:
     # 1. 选择几个典型N值(如10,100,1000,10000)
     # 2. 计算并格式化输出三种级数和及相对误差
-     N_values = [10, 100, 1000, 10000]
+    N_values = [10, 100, 1000, 10000]
     print("N\tS1\t\tS2\t\tS3\t\tErr1\t\tErr2")
     for N in N_values:
         s1 = sum_S1(N)
