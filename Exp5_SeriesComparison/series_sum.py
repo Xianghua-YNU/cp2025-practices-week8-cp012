@@ -13,7 +13,10 @@ def sum_S1(N):
     """
     # 学生在此实现第一种级数求和
     # 提示: 使用循环从1到2N，计算(-1)^n * n/(n+1)并累加
-    pass
+    result = 0
+    for n in range(1, 2 * N + 1):
+        result += (-1) ** n * n / (n + 1)
+    return result
 
 def sum_S2(N):
     """计算第二种形式的级数和：两项求和相减
@@ -29,7 +32,12 @@ def sum_S2(N):
     # 提示: 
     # 1. 计算两个独立求和部分
     # 2. 将结果相减
-    pass
+    sum1 = 0
+    sum2 = 0
+    for n in range(1, N + 1):
+        sum1 += (2 * n - 1) / (2 * n)
+        sum2 += (2 * n) / (2 * n + 1)
+    return -sum1 + sum2
 
 def sum_S3(N):
     """计算第三种形式的级数和：直接求和
@@ -43,7 +51,10 @@ def sum_S3(N):
     """
     # 学生在此实现第三种级数求和
     # 提示: 使用循环从1到N，计算1/(2n(2n+1))并累加
-    pass
+    result = 0
+    for n in range(1, N + 1):
+        result += 1 / (2 * n * (2 * n + 1))
+    return result
 
 def calculate_relative_errors(N_values):
     """计算相对误差
@@ -58,7 +69,15 @@ def calculate_relative_errors(N_values):
     """
     # 学生在此实现误差计算
     # 提示: 对每个N值计算三种级数和，然后计算相对误差
-    pass
+    err1 = []
+    err2 = []
+    for N in N_values:
+        s1 = sum_S1(N)
+        s2 = sum_S2(N)
+        s3 = sum_S3(N)
+        err1.append(np.abs((s1 - s3) / s3))
+        err2.append(np.abs((s2 - s3) / s3))
+    return err1, err2
 
 def plot_errors(N_values, err1, err2):
     """绘制误差分析图
@@ -72,7 +91,14 @@ def plot_errors(N_values, err1, err2):
     # 提示:
     # 1. 使用plt.loglog绘制双对数坐标图
     # 2. 添加网格、标签和图例
-    pass
+    plt.loglog(N_values, err1, label='Err1 (S1 relative to S3)')
+    plt.loglog(N_values, err2, label='Err2 (S2 relative to S3)')
+    plt.grid(True)
+    plt.xlabel('N')
+    plt.ylabel('Relative Error')
+    plt.title('Relative Errors of S1 and S2 compared to S3')
+    plt.legend()
+    plt.show()
 
 def print_results():
     """打印典型N值的计算结果"""
@@ -80,7 +106,15 @@ def print_results():
     # 提示:
     # 1. 选择几个典型N值(如10,100,1000,10000)
     # 2. 计算并格式化输出三种级数和及相对误差
-    pass
+     N_values = [10, 100, 1000, 10000]
+    print("N\tS1\t\tS2\t\tS3\t\tErr1\t\tErr2")
+    for N in N_values:
+        s1 = sum_S1(N)
+        s2 = sum_S2(N)
+        s3 = sum_S3(N)
+        err1 = np.abs((s1 - s3) / s3)
+        err2 = np.abs((s2 - s3) / s3)
+        print(f"{N}\t{s1:.10f}\t{s2:.10f}\t{s3:.10f}\t{err1:.10f}\t{err2:.10f}")
 
 def main():
     """主函数"""
